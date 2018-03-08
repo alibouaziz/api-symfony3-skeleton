@@ -13,6 +13,7 @@ use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * @RouteResource("registration", pluralize=false)
@@ -20,6 +21,42 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class RestRegistrationController extends FOSRestController implements ClassResourceInterface
 {
     /**
+     * @ApiDoc(
+     *     section="Authentification",
+     *  description="creer un compte",
+     *  requirements={
+     *     {
+     *          "name"="email",
+     *          "dataType"="email",
+     *          "requirement"="*",
+     *          "description"="email du utilisateur"
+     *      },
+     *     {
+     *          "name"="username",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="username du utilisateur"
+     *      },
+     *     {
+     *          "name"="plainPassword.first",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="password du utilisateur"
+     *      },
+     *     {
+     *          "name"="plainPassword.second",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="confirmation password du utilisateur"
+     *      }
+     *  },
+     *     statusCodes = {
+     *        201 = "Can register with valid data",
+     *        400 = {"Cannot register with existing (username or email)",
+     *                  "Cannot register with an mismatched password"
+     *              }
+     *    }
+     * )
      * @Annotations\Post("/register")
      */
     public function registerAction(Request $request)

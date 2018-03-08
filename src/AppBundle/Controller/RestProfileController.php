@@ -24,6 +24,7 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * @RouteResource("profile", pluralize=false)
  *
@@ -31,6 +32,25 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class RestProfileController extends FOSRestController implements ClassResourceInterface
 {
     /**
+     *  @ApiDoc(
+     *     section="profile",
+     *  description="Affiche le profile du utilisateur",
+     *  requirements={
+     *      {
+     *          "name"="user",
+     *          "dataType"="integer",
+     *          "requirement"="\d+",
+     *          "description"="l'id du utilisateur"
+     *      }
+     *  },
+     *
+     *  output={ "class"=User::class, "collection"=true},
+     *     statusCodes = {
+     *        401 = "Invalid JWT Token",
+     *        200 = "Can view own profile",
+     *        403 = "Cannot view another user's profile"
+     *    }
+     * )
      *
      * @Get("/profile/{user}")
      *
@@ -49,6 +69,42 @@ class RestProfileController extends FOSRestController implements ClassResourceIn
 
 
     /**
+     * @ApiDoc(
+     *     section="profile",
+     *  description="modifier totalement le profile du utilisateur",
+     *  requirements={
+     *     {
+     *          "name"="user",
+     *          "dataType"="integer",
+     *          "requirement"="\d+",
+     *          "description"="l'id du utilisateur"
+     *      },
+     *      {
+     *          "name"="username",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="username du utilisateur"
+     *      },
+     *     {
+     *          "name"="email",
+     *          "dataType"="email",
+     *          "requirement"="*",
+     *          "description"="email du utilisateur"
+     *      },
+     *     {
+     *          "name"="current_password",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="password du utilisateur"
+     *      }
+     *  },
+     *     statusCodes = {
+     *        204 = "Can replace their own profile",
+     *        400 = "Must supply current password when updating profile information",
+     *        403 = "Cannot replace another user's profile"
+     *    }
+     * )
+     *
      * @param Request       $request
      * @param UserInterface $user
      *
@@ -62,6 +118,42 @@ class RestProfileController extends FOSRestController implements ClassResourceIn
     }
 
     /**
+     * @ApiDoc(
+     *     section="profile",
+     *  description="modifier le profile du utilisateur",
+     *  requirements={
+     *     {
+     *          "name"="user",
+     *          "dataType"="integer",
+     *          "requirement"="\d+",
+     *          "description"="l'id du utilisateur"
+     *      },
+     *     {
+     *          "name"="username",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="username du utilisateur"
+     *      },
+     *     {
+     *          "name"="email",
+     *          "dataType"="email",
+     *          "requirement"="*",
+     *          "description"="email du utilisateur"
+     *      },
+     *     {
+     *          "name"="current_password",
+     *          "dataType"="string",
+     *          "requirement"="*",
+     *          "description"="password du utilisateur"
+     *      }
+     *  },
+     *     statusCodes = {
+     *        204 = "Can update their own profile",
+     *        400 = "Must supply current password when updating profile information",
+     *        403 = "Cannot update another user's profile"
+     *    }
+     * )
+     *
      * @param Request       $request
      * @param UserInterface $user
      *
