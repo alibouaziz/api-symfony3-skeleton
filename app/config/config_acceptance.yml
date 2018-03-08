@@ -16,7 +16,7 @@ csa_guzzle:
     clients:
         local_test_api:
             config:
-                base_uri: "localhost://api-code-review/app_acceptance.php/"
+                base_uri: "localhost://api-symfony3-skeleton/app_acceptance.php/"
 
 parameters:
     database_name: "db_acceptance"
