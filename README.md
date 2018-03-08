@@ -1,2 +1,4 @@
-# api-symfony3-skeleton
-restful api with symfony3 with test (behat) using FOSUserBundle+FOSRestBundle+NelmioCorsBundle+NelmioApiDocBundle+JMSSerializerBundle+LexikJWTAuthenticationBundle
+api-symfony3-skeleton
+===============
+
+A Symfony project created on March 5, 2018, 4:45 pm.
