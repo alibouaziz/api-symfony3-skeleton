@@ -116,8 +116,8 @@ fos_rest:
 jms_serializer: ~
 
 # CSA Guzzle
-csa_guzzle:
-    profiler: "%kernel.debug%"
+#csa_guzzle:
+#    profiler: "%kernel.debug%"
 
 # Lexik JWT Bundle
 lexik_jwt_authentication:
