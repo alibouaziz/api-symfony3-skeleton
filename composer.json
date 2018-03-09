@@ -1,5 +1,5 @@
 {
-    "name": "ali/api-code-review",
+    "name": "ali/api-symfony-skeleton",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -43,7 +43,7 @@
 
         "behat/behat": "^3.1",
         "behat/symfony2-extension": "^2.1",
-        "phpunit/phpunit": "^5.5",
+        "phpunit/phpunit": "~4.0",
         "guzzlehttp/guzzle": "^6.2",
         "csa/guzzle-bundle": "^2.1",
         "behatch/contexts": "^3.0"
